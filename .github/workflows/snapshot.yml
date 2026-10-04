@@ -1,0 +1,46 @@
+name: fpl-snapshot
+
+on:
+  schedule:
+    # Daily: ~06:00 and ~14:00 UK time (UTC; adjust +1h during BST if you care)
+    - cron: "17 5,13 * * *"
+    # Deadline days (Fri/Sat): add ~10:00, 16:00, 19:00 UK captures
+    - cron: "17 9,15,18 * * 5,6"
+  workflow_dispatch: {}   # enables the manual "Run workflow" button
+
+permissions:
+  contents: write          # required so the bot can push snapshot commits
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run unit tests (fail fast if script is broken)
+        run: python fpl_snapshot.py --test
+
+      - name: Run snapshot
+        run: python fpl_snapshot.py --base-dir ./snapshots
+
+      - name: Commit new snapshots
+        run: |
+          git config user.name "snapshot-bot"
+          git config user.email "snapshot-bot@users.noreply.github.com"
+          git add snapshots/
+          if git diff --cached --quiet; then
+            echo "No content changes — nothing to commit."
+          else
+            git commit -m "snapshot $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git push
+          fi
