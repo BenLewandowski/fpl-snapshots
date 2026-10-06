@@ -76,7 +76,7 @@ class SnapshotConfig:
     base_dir: Path = Path("/content/drive/MyDrive/fpl_cache/snapshots")
     seasons: list = field(default_factory=lambda: ["2026-27"])
     include_raw_bootstrap: bool = False   # raw JSON is ~10-20 MB; off by default
-    max_keep_per_source: int = 200        # retention: snapshots per source
+    max_keep_per_source: int = 500        # retention: snapshots per source
     request_timeout_s: int = 60
     retry_attempts: int = 3
     retry_backoff_s: float = 5.0
@@ -479,8 +479,8 @@ def main() -> int:
                    help="Comma-separated seasons for E0 files, e.g. '2025-26,2026-27'")
     p.add_argument("--include-raw", action="store_true",
                    help="Also dump raw bootstrap-static JSON once per GW")
-    p.add_argument("--max-keep", type=int, default=200,
-                   help="Snapshots retained per source (default 200)")
+    p.add_argument("--max-keep", type=int, default=500,
+                   help="Snapshots retained per source (default 500)")
     p.add_argument("--test", action="store_true", help="Run offline unit tests")
     args = p.parse_args()
 
