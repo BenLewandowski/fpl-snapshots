@@ -2,11 +2,24 @@ name: fpl-snapshot
 
 on:
   schedule:
-    # Daily: ~06:00 and ~14:00 UK time (UTC; adjust +1h during BST if you care)
-    - cron: "17 5,13 * * *"
-    # Deadline days (Fri/Sat): add ~10:00, 16:00, 19:00 UK captures
-    - cron: "17 9,15,18 * * 5,6"
-  workflow_dispatch: {}   # enables the manual "Run workflow" button
+    # BASELINE (all days): quiet-market anchors
+    - cron: "27 7 * * *"     # 08:30 UK — overnight Asian session settled, morning line
+    - cron: "27 20 * * *"    # 21:30 UK — end-of-day line, post evening pressers
+
+    # MIDWEEK (Tue-Thu): press conferences for weekend fixtures happen here
+    - cron: "27 13 * * 2,3,4"  # 14:30 UK — post-pre-match presser line
+
+    # DEADLINE CADENCE (Fri): escalating toward the Saturday openers
+    - cron: "27 7,11,15 * * 5"   # 08:30, 12:30, 16:30 UK — catch the pre-deadline ramp
+    - cron: "57 22 * * 5"        # 23:57 UK — the "Friday night line" (most valuable single snapshot)
+
+    # MATCHDAY (Sat/Sun): team-news windows around kickoff clusters
+    - cron: "42 10 * * 6"    # 11:42 UK — just before 12:30 kickoff lineups drop
+    - cron: "57 13 * * 6,0"  # 14:57 UK — before 15:00 cluster lineups
+    - cron: "27 15 * * 6,0"  # 16:27 UK — before 16:30/17:30 kickoff lineups
+    - cron: "57 18 * * 0"    # 19:57 UK — before 20:00 Sunday kickoff
+    - cron: "57 19 * * 1"    # 20:57 UK — Monday Night Football lineup window
+  workflow_dispatch: {}
 
 permissions:
   contents: write          # required so the bot can push snapshot commits
