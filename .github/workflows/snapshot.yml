@@ -44,7 +44,7 @@ jobs:
         run: python fpl_snapshot.py --test
 
       - name: Run snapshot
-        run: python fpl_snapshot.py --base-dir ./snapshots
+        run: python fpl_snapshot.py --base-dir ./snapshots --max-keep 500
 
       - name: Commit new snapshots
         run: |
