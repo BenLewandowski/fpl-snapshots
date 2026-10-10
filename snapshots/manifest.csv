@@ -59,3 +59,7 @@ fd_fixtures,2026-10-09T20:09:27Z,https://www.football-data.co.uk/fixtures.csv,20
 fd_e0_2627,2026-10-09T20:09:27Z,https://www.football-data.co.uk/mmz4281/2627/E0.csv,200,24803,8e21d4821be776332f3504f55f85b4277f326f03513b2c7501fbdedf92b8b1a2,50,0,,
 fpl_bootstrap_compact,2026-10-09T20:09:27Z,https://fantasy.premierleague.com/api/bootstrap-static/,200,84852,86641f4cf57804340e39278255d8e558812b1b19469b4ab82e5f3f5a87ea9128,667,1,snapshots/fpl_bootstrap_compact/fpl_bootstrap_compact_20261009T200927Z.csv,gw=5 finished=True next_deadline=2026-10-10T10:00:00Z
 fpl_fixtures,2026-10-09T20:09:27Z,https://fantasy.premierleague.com/api/fixtures/,200,231760,113c3c674e681542b8a7926a02036cab9d438f7f1c0bd5d4410afa367a31ad04,380,0,,
+fd_fixtures,2026-10-10T00:07:03Z,https://www.football-data.co.uk/fixtures.csv,200,56330,d5f78c25873ab3c2969c94792c82aad376b872f26bb452b09f39feb4fe4ccbf0,199,0,,
+fd_e0_2627,2026-10-10T00:07:03Z,https://www.football-data.co.uk/mmz4281/2627/E0.csv,200,24803,8e21d4821be776332f3504f55f85b4277f326f03513b2c7501fbdedf92b8b1a2,50,0,,
+fpl_bootstrap_compact,2026-10-10T00:07:03Z,https://fantasy.premierleague.com/api/bootstrap-static/,200,84876,18931614e22e454523951d1a0f1ee98f895fc3433d3b1187b99136ef0602849f,667,1,snapshots/fpl_bootstrap_compact/fpl_bootstrap_compact_20261010T000703Z.csv,gw=5 finished=True next_deadline=2026-10-10T10:00:00Z
+fpl_fixtures,2026-10-10T00:07:03Z,https://fantasy.premierleague.com/api/fixtures/,200,231760,113c3c674e681542b8a7926a02036cab9d438f7f1c0bd5d4410afa367a31ad04,380,0,,
